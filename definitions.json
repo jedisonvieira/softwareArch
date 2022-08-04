@@ -1,0 +1,35 @@
+{
+    "vhosts": [
+        {
+            "name": "/"
+        }
+    ],
+    "users": [
+        {
+            "name": "guest",
+            "password_hash": "fEO4kz8RBGwiESjNPHIS34dbzDT09uGzEC/pcsdQz1J9Txq3",
+            "hashing_algorithm": "rabbit_password_hashing_sha256",
+            "tags": "administrator"
+        }
+    ],
+    "permissions": [
+        {
+         "user": "guest",
+         "vhost": "/",
+         "configure": ".*",
+         "write": ".*",
+         "read": ".*"
+        }
+    ],
+    "queues": [
+        {
+            "name": "sales/amcom",
+            "vhost": "/",
+            "durable": true,
+            "auto_delete": false,
+            "arguments": {
+                "x-queue-type": "classic"
+            }
+        }
+    ]
+}

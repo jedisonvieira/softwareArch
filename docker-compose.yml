@@ -1,0 +1,26 @@
+version: "2.6.1"
+services:
+
+  rabbitmq-service:
+    image: rabbitmq:3-management-alpine
+    container_name: rabbitmq-service
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+      - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+      - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
+      - ./definitions.json:/etc/rabbitmq/definitions.json:ro
+    networks:
+      - rabbitmq_go_net
+
+  -service:
+    container_name: mongo-service
+    ports:
+      - "27017:27017"
+    image: mongo
+
+networks:
+  rabbitmq_go_net:
+    driver: bridge
